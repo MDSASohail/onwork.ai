@@ -1,0 +1,209 @@
+*{
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  overflow-x: hidden;  /* Prevent horizontal scrolling */
+}
+
+
+/*Scrollbar  */
+
+.styleScrollbar::-webkit-scrollbar {
+  width: 8px; 
+}
+
+.styleScrollbar::-webkit-scrollbar-track {
+  background:#D3D1D1; 
+  border-radius: 8px; 
+}
+
+.styleScrollbar::-webkit-scrollbar-thumb {
+  background: #8766FF; 
+  border-radius: 8px; 
+}
+
+
+/* Hide scrollbar but allow scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+
+
+/* Barchart  */
+
+
+
+
+
+/* Twinkling start */
+
+/* Star styles */
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 1s infinite alternate;
+}
+
+.star2 {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle2 2s 2s infinite alternate;
+}
+
+.star3 {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle3 3s 1s infinite alternate;
+}
+
+
+.glass-panel {
+  color: #fff;
+  /* margin: 40px auto; */
+  background-color: rgba(255,255,255,0.01);
+  border: 1px solid rgba(255,255,255,0.1);
+  width: 100%;
+  border-radius: 15px;
+  padding: 32px;
+  backdrop-filter: blur(3px);
+}
+
+/* Twinkle animation for stars */
+@keyframes twinkle {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+@keyframes twinkle2 {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@keyframes twinkle3 {
+  0% { opacity: 0.01; }
+  100% { opacity: 1; }
+}
+
+
+
+.animate-comet {
+  animation: comet 4s 20s linear infinite;
+  
+}
+
+
+@keyframes comet {
+  0% {
+    transform: translateX(0) translateY(0) scale(1) rotate(45deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-400px) translateY(400px) scale(0.5) rotate(45deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateX(-600px) translateY(600px) scale(0) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+/* @layer utilities { */
+  
+/* } */
+
+
+
+
+
+
+
+
+/* End Barchart */
+
+
+
+
+/* This way I can make a btn class using tailwind */
+/* 
+   .btn {
+  @apply bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary;
+
+  use like this
+  <button class="btn">Click Me</button>
+}
+ */
+
+ /* 
+    Dark mode using Tailwind
+
+    const toggleDarkMode = () => {
+  document.documentElement.classList.toggle('dark');
+};
+
+
+
+1st way
+module.exports = {
+  darkMode: 'class', // Enable class-based dark mode
+  theme: {
+    extend: {
+      colors: {
+        background: {
+          light: '#ffffff', // Default for light mode
+          dark: '#1a202c',  // Default for dark mode
+        },
+        text: {
+          light: '#000000',
+          dark: '#f5f5f5',
+        },
+      },
+    },
+  },
+};
+
+
+use 
+<div class="bg-background-light text-text-light dark:bg-background-dark dark:text-text-dark">
+  Hello, World!
+</div>
+
+
+2nd way
+
+
+
+.light-mode {
+  @apply bg-white text-black;
+}
+.dark-mode {
+  @apply bg-black text-white;
+}
+
+use 
+
+<div class="light-mode dark:dark-mode">
+  Hello, World!
+</div>
+
+
+3rd way
+3. Apply Dark Mode at the Component Level
+Wrap entire components or sections in a parent <div> with the dark: class. Child elements inherit styles, minimizing individual declarations.
+
+Example
+html
+Copy code
+<div class="bg-white text-black dark:bg-black dark:text-white">
+  <div class="p-4">Header</div>
+  <div class="p-4">Content</div>
+</div>
+
+  */
