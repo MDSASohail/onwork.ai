@@ -1,15 +1,35 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { CopyAll, ContentCopy, Settings } from '@mui/icons-material'
 import VerticalLine from '../Images/Vertical Line.png'
 import VerticalLineSmall from '../Images/Vertical Line samll.png'
+import CopiedMSG from "./CopiedMSG";
 const domain = [{ heading: "Camrony AFS", subHeading: "camrony.allfriends.studio.com" }, { heading: "Camrony 2nd domain", subHeading: "camproy.2ndcomain.com" }, { heading: "Camprony 3", subHeading: "3rd subheading" }]
 function InstallationProcess() {
     const codeRef = useRef(null);
+    const [displayCopyMSG, setDisplayCopyMSG] = useState({ clickedOnIcon: false, clickedOnText: false });
 
-    const copyCode = () => {
+
+    const copyCode = (icon = false) => {
+        console.log(" clicked", icon)
         navigator.clipboard.writeText(codeRef.current.innerText);
-        // console.log("Vlaue to copy is ", codeRef.current.innerText)
+        // console.log("Vlaue to copy is ", codeRef.current.innerText);
+        if (icon) {
+            setDisplayCopyMSG((preValue) => ({ ...preValue, clickedOnIcon: true }));
+
+            setTimeout(() => {
+                setDisplayCopyMSG((preValue) => ({ ...preValue, clickedOnIcon: false }));
+            }, 1000)
+        } else {
+            setDisplayCopyMSG((preValue) => ({ ...preValue, clickedOnText: true }));
+               console.log("Text clicked")
+            setTimeout(() => {
+                setDisplayCopyMSG((preValue) => ({ ...preValue, clickedOnText: false }));
+            }, 1000)
+        }
+
     }
+
+
     return (
         <>
 
@@ -46,7 +66,10 @@ function InstallationProcess() {
                                          </script>`}
                                 </p>
 
-                                <div onClick={copyCode} className="absolute bottom-0 -right-7 lg:-right-10 cursor-pointer">
+                                <div onClick={() => copyCode(true)} className="absolute bottom-0 -right-7 lg:-right-10 cursor-pointer">
+                                    <div className={`absolute -top-12 -left-8 transition-opacity ${displayCopyMSG.clickedOnIcon ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                                        <CopiedMSG />
+                                    </div>
                                     <ContentCopy />
                                 </div>
 
@@ -74,9 +97,12 @@ function InstallationProcess() {
                             </div>
                         </div>
 
-                        <div className=" max-w-[750px] mt-10 w-full flex justify-end">
+                        <div className=" max-w-[750px] mt-10 w-full flex justify-end relative">
                             <button className="bg-white text-borderColor border-2 hover:bg-borderColor transition-colors hover:text-white border-borderColor p-2 rounded-xl">Verify Installation</button>
-                            <button onClick={copyCode} className="bg-white ml-4 hover:bg-borderColor transition-colors hover:text-white text-borderColor border-2 border-borderColor p-2 rounded-xl">Copy Code</button>
+                            <button onClick={()=>{copyCode(false)}} className="bg-white ml-4 hover:bg-borderColor transition-colors hover:text-white text-borderColor border-2 border-borderColor p-2 rounded-xl">Copy Code</button>
+                            <div className={`absolute -top-12 right-3 transition-opacity ${displayCopyMSG.clickedOnText ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                                <CopiedMSG />
+                            </div>
                         </div>
 
                     </div>

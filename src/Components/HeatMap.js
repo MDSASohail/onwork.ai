@@ -254,7 +254,7 @@ function HeatMap() {
     }
     return (
         <>
-            <div className="bg-white rounded-xl px-4 relative text-textLightColor py-12 my-10">
+            <div className="bg-white  rounded-xl px-2 relative text-textLightColor py-12 my-10 ">
 
                 <div className='border-2 font-medium absolute text-black -top-6 left-10 py-2 rounded-xl bg-white border-borderColor px-4 flex items-center'>
                     <img src={HeatMapIMG} alt="HeatMap" className='w-5 h-5' />
@@ -281,10 +281,10 @@ function HeatMap() {
                     </div>
                 </div>
 
-                <div className="h-[433px] overflow-hidden">
+                <div className="h-[433px] ">
 
-                    <div className="styleScrollbar h-[96%] overflow-y-scroll">
-                        <table className="table-auto w-full">
+                    <div className="styleScrollbar h-[96%] overflow-y-scroll    ">
+                        <table className="table-auto w-full min-w-[800px] ">
                             <thead className=''>
                                 <tr className="h-[40px]  sticky bg-white top-0 z-10">
 
@@ -295,7 +295,7 @@ function HeatMap() {
                                     <th >Average clicks</th>
                                     <th >Average Retention</th>
                                     <th>Device</th>
-                                    <th className='text-center'>Heatmap</th>
+                                    <th >Heatmap</th>
                                 </tr>
                             </thead>
                             <tbody className="text-[#9F9F9F] ">
@@ -303,7 +303,7 @@ function HeatMap() {
                                     .map((eachData, index) => (
                                         <tr
                                             key={index}
-                                            className="text-center relative hover:bg-[#EAF1FF] transition-colors hover:text-black border-b-2  border-[#CAC7C7] h-[40px]"
+                                            className="text-center  relative hover:bg-[#EAF1FF] transition-colors hover:text-black border-b-2  border-[#CAC7C7] h-[40px]"
                                         >
 
 
@@ -317,8 +317,9 @@ function HeatMap() {
                                             </td>
                                             <td className=''>{eachData.AverageRetention}</td>
                                             <td className=''>{eachData.AverageRetention}</td>
-                                            <td  >{eachData.Device == 'Desktop' ? <Computer /> : <PhoneAndroid />}</td>
-                                            <td className='flex justify-center'><img src={HeatMapIMG} alt="HeatMap" className='w-5 h-5 ' /></td>
+                                            <td className='' >{eachData.Device == 'Desktop' ? <Computer /> : <PhoneAndroid />}</td>
+                                            <td className=''><div className='text-center flex justify-center'>
+                                            <img src={HeatMapIMG} alt="HeatMap" className='w-5 h-5  ' /></div></td>
 
 
                                         </tr>

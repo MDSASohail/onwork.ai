@@ -1,6 +1,6 @@
 export const setCookies = (key, value, hours) =>{
 
-    if(getCooketValue(key)) {
+    if(getCookeiesValue(key)) {
         console.log("Timer already exists");
         return
     };
@@ -14,7 +14,7 @@ export const setCookies = (key, value, hours) =>{
 }
 
 
-export const getCooketValue = (keyToGet) =>{
+export const getCookeiesValue = (keyToGet) =>{
     const cookies = document.cookie.split('; ');
    
     //  console.log("Cookie ", cookies)

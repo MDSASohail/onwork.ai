@@ -1,18 +1,32 @@
-import UserIMG from '../Images/User Image.png'
+import UserIMG from '../Images/Dummy Place holder.png'
+import {useState} from 'react'
 function ProfileSetting() {
+
+    const [previewImage, setPreviewImage] = useState(UserIMG);
+
+    const handleImageChange = (event) => {
+        const file = event.target.files[0]; // Get the selected file
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                setPreviewImage(e.target.result); // Set preview image URL
+            };
+            reader.readAsDataURL(file);
+        }
+    };
     return (
         <>
 
-            <div className=" bg-white rounded-2xl py-5 px-8 lg:flex gap-5  ">
-                <div className='text-center '>
-                    <img src={UserIMG} alt='' className='w-32 rounded-full h-32 mx-auto' />
+            <div className=" bg-white rounded-2xl py-5 px-8 lg:flex gap-2  ">
+                <div className='text-center w-32 h-32 overflow-hidden '>
+                    <img src={previewImage} alt='' className='w-32  rounded-full h-32 ' />
 
                 </div>
-                <div className='w-full mt-10'>
+                <div className=' mt-10'>
                     <div className=' justify-between flex items-center lg:w-80'>
                         <div className='relative'>
                             <label htmlFor='uploadNew' className='cursor-pointer rounded-xl z-10 border-2 hover:bg-borderColor hover:text-white transition-colors  border-borderColor  py-2 px-6 text-borderColor'>Upload New</label>
-                            <input type='file' id='uploadNew' className='absolute -z-10 top-0 left-0 opacity-0 cursor-pointer' />
+                            <input type='file' accept='image/*' onChange={handleImageChange} id='uploadNew' className='absolute -z-10 top-0 left-0 opacity-0 cursor-pointer' />
                         </div>
                         <button className='cursor-pointer z-10 border-2  rounded-xl hover:bg-borderColor hover:text-white transition-colors   border-borderColor py-2 px-6 text-borderColor'>Delete Image</button>
                     </div>

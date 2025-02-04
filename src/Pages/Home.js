@@ -12,7 +12,7 @@ import PieChart from "../Components/PieChart";
 import LatestUsers from "../Components/LatestUsers";
 import AiConversationDiv from "../Components/AiConversationSection";
 import { useEffect, useState } from "react";
-import { getCooketValue, setCookies } from "../JSFunctions/JavaScriptFunction";
+import { getCookeiesValue, setCookies } from "../JSFunctions/JavaScriptFunction";
 import Toast from "../Components/Toast";
 import CompanyLogo from "../Components/CompanyLogo";
 import TopMiddle from '../Components/TopMiddle'
@@ -31,6 +31,7 @@ import SessionRecording from "../Components/SessionRecording";
 import HeatMap from "../Components/HeatMap";
 import SessionRecordingInDetail from "../Components/SessionRecordingDetail";
 import OrganizationSetting from "../Components/OrganizationSetting";
+import CustomLineChart from "../Components/LineChard";
 const filterValues = [{ criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" },]
 // const filterValues = [{ criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }]
 
@@ -40,7 +41,7 @@ function Home() {
     const [isFilterOn, setisFilterOn] = useState(false)
     //It runs only one time after loading the page.
     useEffect(() => {
-        if (!getCooketValue("name"))  // It check value present or not. Present means time remaining. If not show market component.
+        if (!getCookeiesValue("name"))  // It check value present or not. Present means time remaining. If not show market component.
         {
             console.log(" Not found means marketing should be on")
             setIsMarketingOn(true)
@@ -63,7 +64,7 @@ function Home() {
             <div className={`bg-secondryBgColor flex md:gap-3   md:p-3 lg:p-6  ${isMarketingOn ? "top-8" : ""}`}>
 
 
-                <div className=" lg:w-[10%] md:w-[20%] ">
+                <div className=" lg:w-[10%] md:w-[20%] min-w-[150px] ">
                     <div className={`sticky    z-20 w-full  ${isMarketingOn ? "top-8" : "top-[6px]"}`}   >
                         <div className=" ">
                             <CompanyLogo />
@@ -80,7 +81,7 @@ function Home() {
 
                 <div className="lg:w-[90%] md:w-[80%]  relative ">
                     {/* This div is to only give bg color Its height depend upon the filter is on or not*/}
-                    {/* <div className={`bg-primaryBgColor    fixed  w-full z-20   ${isFilterOn ? "h-[35%]" : "h-[21%]"}`}></div> */}
+                    {/* <div className={`bg-primaryBgColor    fixed  w-full z-20   ${isFilterOn ? "h-[18%]" : "h-[14%]"}`}></div> */}
 
                     <div className={` realtive  h-14 py-2     bg-primaryBgColor `}>
 
@@ -125,68 +126,69 @@ function Home() {
 
 
                         {/* ${isFilterOn ? "opacity-100 " : "opacity-0 pointer-events-none"} */}
-                        <div className={`removeBorder   my-[1%] pb-1 border-red-800 sticky transition-opacity duration-300 ${isFilterOn ? "opacity-100 " : "opacity-0 pointer-events-none"}  ${isMarketingOn ? "top-[23%] " : "top-[21%] "}`}>
+                        <div className={`removeBorder z-50   pb-1 border-red-800 sticky transition-opacity duration-300 ${isFilterOn ? "opacity-100 " : "opacity-0 pointer-events-none"}  ${isMarketingOn ? "top-[23%] " : "top-[21%] "}`}>
                             <FilterSection filters={filterValues} onClearFilters={() => { }} />
                         </div>
                         {/* <SessionRecordingInDetail/> */}
-                                {/* <HeatMap/> */}
-
-
-
-                        <div className="w-full border-  my-[1%]">
-                            <img src={SecondIMG} alt="" className="removeBorder h-full border-red-700 w-full " />
+                        <div className="">
+                            <HeatMap />
                         </div>
+
+
+
+                        <CustomLineChart/>
+
 
                         <OrganizationSetting/>
                         <ManageProfile/>
-                                {/* <InstallationProcess/> */}
-                                <SessionRecording/>
+                        {/* <InstallationProcess/> */}
+                        {/* <SessionRecording/> */}
 
-                        <div className="flex    removeBorder border-green-900 flex-wrap gap-3 sm:justify-center lg:justify-between">
+                        {/* <div className="flex    removeBorder border-green-900 flex-wrap gap-3 sm:justify-center lg:justify-between">
                             <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
                             <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
                             <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-                        </div>
+                        </div> */}
 
-                        <div className="my-[1%]" >
+                        {/* <div className="my-[1%]" >
                             <LatestUsers />
-                        </div>
+                        </div> */}
 
-                        <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
+                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
 
                             <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
                             <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
                             <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
-                        </div>
+                        </div> */}
 
-                        <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
+                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
                             <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
                             <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
                             <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
                            
 
-                        </div>
+                        </div> */}
 
-                        <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
+                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
                             <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
                             <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
                             <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
 
-                        </div>
+                        </div> */}
 
-                        <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
+                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
                             <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
                             <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
                             <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
 
-                        </div>
-
+                        </div> */}
+                        {/* 
                         <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
                             <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
                             <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
                             <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
 
-                        </div>
+                        </div> */}
 
                     </div>
                 </div>

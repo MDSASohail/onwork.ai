@@ -34,7 +34,7 @@ function EachDetailSection({ indexOfParent, number, increment, text, options }) 
     };
     return (
         <>
-            <div className=' lg:w-[400px] flex-grow w-full p-1 h-28  z-30 pl-6 flex justify-between bg-white rounded-2xl' >
+            <div className=' lg:w-[400px] flex-grow w-full p-1 h-28  pl-6 flex justify-between bg-white rounded-2xl' >
                 <div className='flex flex-col'>
                     <h1 className='font-medium text-[20px]'>{number}</h1>
                     <span className='text-[#33AF2B] text-[18px]'>{increment}</span>
@@ -53,7 +53,7 @@ function EachDetailSection({ indexOfParent, number, increment, text, options }) 
                         <button className={`p-1 hover:bg-hoverBGColor hover:text-white rounded-full ${isOptionsVisible ?"bg-[#8766FF] text-white":""}`}>
                             <MoreVert />
                         </button>
-                        <div className={`border-2 z-[100] border-borderColor px-1 py-3 rounded-2xl w-60 absolute bg-white transition-opacity duration-300 ease-in-out ${indexOfParent===data.length-1?"right-0":""} ${isOptionsVisible ?"visible opacity-100":"invisible opacity-0"}`}>
+                        <div className={`border-2  md:hidden z-40 border-borderColor px-1 py-3 rounded-2xl w-60 absolute bg-white transition-opacity duration-300 ease-in-out ${indexOfParent===data.length-1?"right-0":""} ${isOptionsVisible ?"visible opacity-100":"invisible opacity-0"}`}>
                             {
                                 options.map((eachOption, index) => <p key={index} className='border-b-2 cursor-pointer hover:bg-hoverBGColor px-2 py-3'>{eachOption}</p>)
                             }

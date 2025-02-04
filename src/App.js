@@ -29,6 +29,7 @@ import HeatMaps from './Components/HeatMap';
 import HeatMap from './Components/HeatMap';
 import SessionRecordingInDetail from './Components/SessionRecordingDetail';
 import OrganizationSetting from './Components/OrganizationSetting';
+import LineChart from './Components/LineChard';
 const filterValues = [{ criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }]
 const dataForBarChart = [
   { name: "google.com", views: 100 },
@@ -54,7 +55,7 @@ function App() {
 
 
   return (
-    <div className="">
+    <div className=" ">
 
       {/* <div>
         <h1>Website Views</h1>
@@ -93,9 +94,9 @@ function App() {
 
       {/* <AiConversationDiv/> */}
       {/* <SideMenuVert/> */}
-      {/* <Home/> */}
+      <Home/>
       {/* <Toast message={"Hello Sohail"}/> */}
-      <Login/>
+      {/* <Login/> */}
       {/* <ManageProfile/> */}
       {/* <InstallationProcess/> */}
       {/* <SessionRecording/> */}
@@ -103,6 +104,7 @@ function App() {
       {/* <HeatMap/> */}
       {/* <SessionRecordingInDetail/> */}
       {/* <OrganizationSetting/> */}
+      {/* <LineChart/> */}
     </div>
   );
 }
