@@ -254,7 +254,7 @@ function HeatMap() {
     }
     return (
         <>
-            <div className="bg-white  rounded-xl px-2 relative text-textLightColor py-12 my-10 ">
+            <div className="bg-white  rounded-xl px-2 relative text-textLightColor py-12 my-10  ">
 
                 <div className='border-2 font-medium absolute text-black -top-6 left-10 py-2 rounded-xl bg-white border-borderColor px-4 flex items-center'>
                     <img src={HeatMapIMG} alt="HeatMap" className='w-5 h-5' />

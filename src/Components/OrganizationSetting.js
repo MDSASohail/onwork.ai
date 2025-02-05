@@ -11,7 +11,7 @@ function OrganizationSetting() {
     const [OrgOrSite, setOrgOrSite] = useState(null) // site = display new site Componenet, org = display org Componenet , null = hide both
     return (
         <>
-            <div className=" py-14 px-6 lg:flex justify-between rounded-2xl bg-[#eaf0ff] relative  my-10 ">
+            <div className=" py-14 px-6 lg:flex  justify-start rounded-2xl bg-[#eaf0ff] relative  my-10  ">
                 <div className='absolute -top-6 left-10 p-3 flex items-center text-xl border-2 border-borderColor font-bold rounded-xl bg-white'>
                     <div className='text-borderColor '><ManageAccounts style={{ fontSize: "30px" }} /></div>
                     <h2 className='ml-3 '>Organization Setting</h2>
@@ -50,7 +50,7 @@ function OrganizationSetting() {
 
 
                 </div>
-                <div className='flex-grow  bg-white rounded-2xl p-6  pb-32 my-6'>
+                <div className='flex-grow  bg-white rounded-2xl p-6  pb-32 my-6 xl:max-w-[75%] '>
                     <div className='flex justify-between items-center mt-4 '>
                         <a className='text-borderColor border-borderColor   underline text-sm'>Accound owner</a>
 
@@ -60,7 +60,7 @@ function OrganizationSetting() {
                     <div className='flex justify-between flex-col lg:flex-row '>
 
 
-                        <div className='flex-grow mr-6 '>
+                        <div className='flex-grow xl:mr-6 '>
                             <div className='flex flex-wrap  gap-2 justify-between   relative border-2 border-borderColor rounded-xl p-4 mt-8'>
 
                                 <div className='absolute -top-6 left-8 p-3 flex items-center     rounded-xl bg-white'>

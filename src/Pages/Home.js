@@ -11,7 +11,7 @@ import Map from '../Components/Map'
 import PieChart from "../Components/PieChart";
 import LatestUsers from "../Components/LatestUsers";
 import AiConversationDiv from "../Components/AiConversationSection";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { getCookeiesValue, setCookies } from "../JSFunctions/JavaScriptFunction";
 import Toast from "../Components/Toast";
 import CompanyLogo from "../Components/CompanyLogo";
@@ -38,15 +38,45 @@ const filterValues = [{ criteria: "Country", operation: ":", value: "India, UAE"
 function Home() {
     const [isMarketingOn, setIsMarketingOn] = useState(false);
     const [showToast, setShowToast] = useState(false)
-    const [isFilterOn, setisFilterOn] = useState(false)
+    const [isFilterOn, setisFilterOn] = useState(true)
+
+    const divRef = useRef(null);
+    const [distance, setDistance] = useState(0);
     //It runs only one time after loading the page.
     useEffect(() => {
         if (!getCookeiesValue("name"))  // It check value present or not. Present means time remaining. If not show market component.
         {
-            console.log(" Not found means marketing should be on")
             setIsMarketingOn(true)
         }
     }, [])
+
+
+    // Used to calculate the distance of  from top of the viewport to determine the sticky position
+    useEffect(() => {
+        const updateDistance = () => {
+            if (divRef.current) {
+                // Calculate distance from the top of the document
+                let offset = divRef.current.offsetTop;
+                let parent = divRef.current.offsetParent;
+                // console.log("Height", offset, parent.offsetTop)
+                while (parent) {
+                    offset += parent.offsetTop;
+                    parent = parent.offsetParent;
+                    // console.log("Height", offset, parent)
+                }
+
+                setDistance(offset);
+            }
+        };
+
+        updateDistance();
+
+        // Optional: Update on scroll
+        // window.addEventListener("scroll", updateDistance);
+        // return () => window.removeEventListener("scroll", updateDistance);
+    }, []);
+
+    // console.log("Distance is ", distance)
 
 
     return (
@@ -54,143 +84,128 @@ function Home() {
 
 
 
-            {isMarketingOn && <div className="w-screen fixed left-0 top-0 z-[110]">
-                <MarketStrategyNotification isMarketingOn={isMarketingOn} setIsMarketingOn={setIsMarketingOn} setShowToast={setShowToast} />
-            </div>}
+
             {/* {showToast && <Toast message={"Marketing component hidden for next 24h "} />} */}
+            {/* {isMarketingOn && <div className="  ">
+                <MarketStrategyNotification isMarketingOn={isMarketingOn} setIsMarketingOn={setIsMarketingOn} setShowToast={setShowToast} />
+            </div>} */}
+            <div className={`bg-primaryBgColor w-screen fixed  h-[34%]  md:h-[39%] xl:h-[41%] 2xl:h-[37%] `}>{/*This div is use to give backgroud color only. I can ditermine its height by distance variable*/}</div>
+            <div style={{ height: `${distance -50}px`, }} className={`bg-primaryBgColor  top-0   fixed  w-full z-20  `}>{/*This div height spread from top to till the top of vertical menu. Width 100% */}</div>
+            <div className={`bg-secondryBgColor  gap-3 border-2   md:p-3 lg:p-6  `}>
 
-            <div className={`bg-primaryBgColor w-screen fixed  h-[45%]  ${isMarketingOn ? "top-6" : ""}`}>{/*This div is use to give backgroud color only */}</div>
-
-            <div className={`bg-secondryBgColor flex md:gap-3   md:p-3 lg:p-6  ${isMarketingOn ? "top-8" : ""}`}>
 
 
-                <div className=" lg:w-[10%] md:w-[20%] min-w-[150px] ">
-                    <div className={`sticky    z-20 w-full  ${isMarketingOn ? "top-8" : "top-[6px]"}`}   >
-                        <div className=" ">
-                            <CompanyLogo />
-                        </div>
-                        <div className="mb-4 ">
-                            <Domain className="" />
-                        </div>
 
-                        <div className=" rounded-2xl overflow-hidden ">
-                            <SideMenuVert className=" " />
-                        </div>
-                    </div>
+                <div className="sticky   md:top-3 lg:top-6 flex justify-center xl:gap-8 gap-4 xl:mx-4 z-50 ">
+                    <div className=" max-w-[150px] absolute  -top-8 left-0"><CompanyLogo /></div>
+                    <TopMiddle />
+
                 </div>
 
-                <div className="lg:w-[90%] md:w-[80%]  relative ">
-                    {/* This div is to only give bg color Its height depend upon the filter is on or not*/}
-                    {/* <div className={`bg-primaryBgColor    fixed  w-full z-20   ${isFilterOn ? "h-[18%]" : "h-[14%]"}`}></div> */}
+                <div className="absolute md:top-3 lg:top-6 md:right-3 lg:right-10 right-0 z-[60]"><TopRightSettings /></div>
 
-                    <div className={` realtive  h-14 py-2     bg-primaryBgColor `}>
 
-                        {/* Only to give color */}
-                        {/* <div className={`z-50 h-24 bg-primaryBgColor   top-0 w-full -translate-x-4 fixed ${isMarketingOn ? "top-6" : "top-0"}`}></div> */}
 
-                        <div className={`fixed border- w-screen left-0 flex justify-center  removeBorder z-[100]   ${isMarketingOn ? "top-10" : "top-3"}`} >
 
-                            <TopMiddle />
+                <div className=" sticky md:top-3 lg:top-6 flex xl:gap-8 gap-4  justify-end my-3 mt-8 xl:mx-4 z-30">
+                    <div><DateRange text={"Date Range"} /></div>
+                </div>
 
+
+                {/* This div's width is 100%. It contain side vertical menu and rest UI */}
+
+                <div ref={divRef} className="flex xl:gap-8 gap-4 xl:mx-4 mt-4 relative">
+
+
+                    <div style={{ top: `${distance - 55}px ` }} className="fixed max-w-[150px] z-[60]  "><Domain /></div>
+                    <div style={{ top: `${distance}px` }} className={`sticky rounded-2xl overflow-hidden h-4/5  md:w-[20%]  max-w-[150px] `}>
+                        <SideMenuVert className="sticky top-0" />
+                    </div>
+                    <div className=" md:w-[78%]   relative flex-grow ">
+
+
+
+
+
+                        <div className=" removeBorder border-blue-900">
+                            <div className="absolute -top-[52px] left-2 z-[60]"><GoodMorningUser /></div>
+                            <TotalDetailComponent />
                         </div>
 
-
-                        <div className={`flex  justify-end  border-white  `}>
-                            {/* <div className=" z-[100] border-2 border-red-800 my-1 "> */}
-                            <TopRightSettings />
-                            {/* </div> */}
-
+                        <div style={{ top: `${distance - 65}px` }} className={`sticky mt-3 bg-primaryBgColor    p-1 z-20`}>
+                            <SearchSection setisFilterOn={setisFilterOn} />
                         </div>
 
-                    </div>
-
-                    <div className={`absolute z-30 ${isMarketingOn ? "top-[108px]" : "top-[108px]"}`}>
-                        <GoodMorningUser />
-
-                    </div>
-                    <div className={` z-[60] sticky mt-12  flex justify-end removeBorder ${isMarketingOn ? "top-11" : "top-[12px]"} `}>
-                        <DateRange />
-                    </div>
-                    <div className="mt-10 removeBorder border-blue-900">
-                        <TotalDetailComponent />
-                    </div>
-
-                    <div className={`sticky mt-5 bg-primaryBgColor removeBorder border-yellow-800    py-1 z-20  ${isMarketingOn ? "top-[120px]" : "top-[95px]"}`}>
-                        <SearchSection setisFilterOn={setisFilterOn} />
-                    </div>
-
-                    {/* All other UI will be in this div */}
-                    {/* ${isFilterOn ? "translate-y-0" : " -translate-y-32"} */}
-                    <div className={` removeBorder mt-5  py-1 transition-transform border-blue-800 ${isFilterOn ? "translate-y-0" : " -translate-y-32"} `}>
+                        {/* All other UI will be in this div */}
+                        {/* ${isFilterOn ? "translate-y-0" : " -translate-y-32"} */}
+                        <div className={`  mt-5  py-1 transition-transform  `}>
 
 
 
-                        {/* ${isFilterOn ? "opacity-100 " : "opacity-0 pointer-events-none"} */}
-                        <div className={`removeBorder z-50   pb-1 border-red-800 sticky transition-opacity duration-300 ${isFilterOn ? "opacity-100 " : "opacity-0 pointer-events-none"}  ${isMarketingOn ? "top-[23%] " : "top-[21%] "}`}>
-                            <FilterSection filters={filterValues} onClearFilters={() => { }} />
-                        </div>
-                        {/* <SessionRecordingInDetail/> */}
-                        <div className="">
+                            {/* ${isFilterOn ? "opacity-100 " : "opacity-0 pointer-events-none"} */}
+                            <div className={` z-[100] hidden  pb-1 sticky transition-opacity duration-300 ${isFilterOn ? "opacity-100 " : "opacity-100 pointer-events-none"}  ${isMarketingOn ? "top-1 " : "top-[21%] "}`}>
+                                <FilterSection filters={filterValues} onClearFilters={() => { }} />
+                            </div>
+
+                            {/* Chat Lines */}
+                            <CustomLineChart />
+
+                            <div className="flex    removeBorder border-green-900 flex-wrap xl:gap-8 gap-4  justify-center lg:justify-between my-7">
+                                <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
+                                <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
+                                <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
+                            </div>
+
+                            <div className="" >
+                                <LatestUsers />
+                            </div>
+
+
+
+
+
+
+                            <div className="flex   flex-wrap xl:gap-8 gap-4    justify-center lg:justify-between my-7">
+
+                                <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
+                                <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
+                                <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
+                                <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
+                                <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
+                                <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
+                                <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
+                                <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
+                                <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
+                                <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
+                                <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
+                                <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
+                                <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
+                                <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
+                                <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
+
+                            </div>
+
+
                             <HeatMap />
+
+
+
+
+
+
+
+                            <OrganizationSetting />
+                            <ManageProfile />
+                            <InstallationProcess />
+                            <SessionRecording />
+                            <SessionRecordingInDetail />
+
+
+
+
                         </div>
-
-
-
-                        <CustomLineChart/>
-
-
-                        <OrganizationSetting/>
-                        <ManageProfile/>
-                        {/* <InstallationProcess/> */}
-                        {/* <SessionRecording/> */}
-
-                        {/* <div className="flex    removeBorder border-green-900 flex-wrap gap-3 sm:justify-center lg:justify-between">
-                            <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-                            <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
-                            <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-                        </div> */}
-
-                        {/* <div className="my-[1%]" >
-                            <LatestUsers />
-                        </div> */}
-
-                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
-
-                            <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
-                            <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
-                            <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
-                        </div> */}
-
-                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
-                            <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
-                            <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
-                            <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-                           
-
-                        </div> */}
-
-                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
-                            <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
-                            <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
-                            <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-
-                        </div> */}
-
-                        {/* <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
-                            <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-                            <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
-                            <EachDetailSection MiddleComponent={BarChart} data={totalHighestAndMostReffer} heading={"Refferer"} />
-
-                        </div> */}
-                        {/* 
-                        <div className="flex   flex-wrap gap-3   border-red-950 justify-center lg:justify-between">
-                            <EachDetailSection MiddleComponent={PieChart} data={[{ text: "Chrome", value: "80%" }, { text: "Mobile Safari", value: "50%" }, { text: "Others", value: "70%" }]} heading={"Browser"} />
-                            <EachDetailSection MiddleComponent={Map} data={[{ text: "Total clicks", value: "100 clicks" }, { text: 'Avg click per page', value: "5 clicks" }, { text: "Avg scroll", value: "60%" }]} heading={"Heatmap"} />
-                            <EachDetailSection MiddleComponent={JavaScriptError} data={[{ text: "Total Error", value: "18" }, { text: "Total Logs", value: "12" }, { text: 'Total Warning', value: "04" }]} heading={"JavaScript Error"} />
-
-                        </div> */}
-
                     </div>
+
                 </div>
             </div>
 

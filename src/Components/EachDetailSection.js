@@ -30,7 +30,7 @@ function EachDetailSection({ MiddleComponent, data, heading }) {
         //     </div>
 
         // </div>
-        <div style={{ boxShadow: '0 4px 6px rgba(135, 102, 255, 0.3)' }} className='  lg:w-[400px] flex-grow w-full  bg-white rounded-2xl p-4 shadow-2xl   my-4 flex flex-col'>
+        <div style={{ boxShadow: '0 4px 6px rgba(135, 102, 255, 0.3)' }} className='  lg:w-[400px] flex-grow w-full  bg-white rounded-2xl p-4 shadow-2xl   my-1 flex flex-col'>
             <div className=' relative z-0  px-3 py-2'>
                 <h1 className='text-center  -z-20 font-medium text-[#8766FF] text-xl'>{heading}</h1>
                 <MoreVert className='absolute right-2 top-2' />

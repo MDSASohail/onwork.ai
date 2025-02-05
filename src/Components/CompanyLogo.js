@@ -3,8 +3,8 @@ function CompanyLogo()
 {
     return(
         <>
-           <div className='w-full h-full '>
-                <img src={Logo} alt="" className=' h-full w-full   ' />
+           <div className='w-40 h-40  '>
+                <img src={Logo} alt="" className=' h-fauto w-full  ' />
             </div>
         </>
     )

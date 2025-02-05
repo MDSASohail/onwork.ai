@@ -33,13 +33,13 @@ function InstallationProcess() {
     return (
         <>
 
-            <div className=" lg:flex gap-3 justify-between my-6  ">
+            <div className=" lg:flex gap-3 justify-between my-10 ">
                 {
                     domain.map((eachDomain, index) => <EachDomainDeesign key={index} heading={eachDomain.heading} subHeading={eachDomain.subHeading} />)
                 }
 
             </div>
-            <div className="p-8 my-6 border-black rounded-2xl bg-white">
+            <div className="p-8 md:p-4 my-6  rounded-2xl bg-white">
                 <div className="my-">
                     <h1 className=" relative">
                         <strong className="font-medium text-xl ml-4 ">Install the tag on your site to get access to all features, tools & insights you need.</strong>
@@ -62,7 +62,7 @@ function InstallationProcess() {
 
                                 <p className="wrap-text" ref={codeRef}>
                                     {`<script>
-                                        (function (on, w , o, r, k, ai){ onwork = on.getElementsByTagName("head")[0];aijs = on.createElement(w);aijs.async=true;aijs.type=ai;aijs.                              charset='utf-8'; aijs.id = k;aijs.defer = true;aijs.async = false;aijs.src=o +'?token='+r;onwork.appendChild(aijs); })(document,                               "script", "https://script.onwork.ai/script/onworkai.js", "J3q6rtt6ky7A6di6s4G6cp6KNLn69rttdicp", "thisistheidforonworkTracker", "text/                              javascript")
+                                        (function (on, w , o, r, k, ai){ onwork = on.getElementsByTagName("head")[0];aijs = on.createElement(w);aijs.async=true;aijs.type=ai;aijs.charset='utf-8'; aijs.id = k;aijs.defer = true;aijs.async = false;aijs.src=o +'?token='+r;onwork.appendChild(aijs); })(document,"script", "https://script.onwork.ai/script/onworkai.js", "J3q6rtt6ky7A6di6s4G6cp6KNLn69rttdicp", "thisistheidforonworkTracker", "text/javascript")
                                          </script>`}
                                 </p>
 
@@ -72,13 +72,6 @@ function InstallationProcess() {
                                     </div>
                                     <ContentCopy />
                                 </div>
-
-
-
-
-
-
-
                             </div>
 
                             <div className="flex items-center relative">

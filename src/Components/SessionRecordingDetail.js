@@ -38,7 +38,7 @@ function SessionRecordingInDetail() {
         <>
 
 
-            <div className="border-2 flex gap-3 p-3 bg-white rounded-xl overflow-hidden">
+            <div className="border-2 flex gap-3 p-3 bg-white rounded-xl overflow-hidden my-10 ">
                 <div className="  text-textLightColor bg-[#EFF4FF] p-2  rounded-xl ">
                     <div className="flex items-center justify-between border-b-2 pb-2 mb-4">
                         <div className="">

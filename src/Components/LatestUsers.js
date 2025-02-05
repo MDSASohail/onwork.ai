@@ -62,10 +62,10 @@ const data = [
             </div>
             <hr className='text-[#D3D1D1] font-bold' />
 
-            <div className="h-[433px] overflow-hidden ">
+            <div className="h-[433px]  ">
                 
                 <div className="styleScrollbar h-[96%] overflow-y-scroll">
-                    <table className="table-auto w-full">
+                    <table className=" min-w-[1400px] w-full ">
                     <thead className=''>
                         <tr className="h-[40px] stic sticky bg-white top-0">
                             <th>S.No</th>

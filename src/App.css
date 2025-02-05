@@ -95,7 +95,7 @@ body {
 
 
 .animate-comet {
-  animation: comet 4s 20s linear infinite;
+  animation: comet 4s 2s linear infinite;
   
 }
 

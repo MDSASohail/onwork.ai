@@ -4,7 +4,7 @@ import Download from "@mui/icons-material/Download"
 import GeminiIcon from '../Images/GeminiIcon.png'
 function SearchSection({setisFilterOn}) {
     return (
-        <div className='   flex justify-between items-center bg-white px-4 h-14 rounded-xl'>
+        <div className='   flex justify-between items-center bg-white px-4  rounded-xl'>
             <div className=' flex items-center rounded-xl py-1 px-3 bg-[#EAF0FF] flex-1 mr-5 justify-between overflow-hidden'>
                 <img src={GeminiIcon}  alt="" className=' h-8' />
                 <input type="text" className='outline-none flex-1 text-lg bg-transparent pl-2' placeholder='Ask me anything'  />

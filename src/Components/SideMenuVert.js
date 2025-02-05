@@ -7,14 +7,14 @@ function SideMenuVert() {
 
   const [verticalmenuBTns, setVerticalmenuBTns] = useState({ activeIndex: 0, menuItems: allSideMenuVertBTNs }) //Holds all the vertical menu btns. It is dynamic.
   const [subMenu, setSubmenu] = useState({ activeIndex: -1, menuItems: [] });
-  console.log("SUb menu is ", subMenu)
+  // console.log("SUb menu is ", subMenu)
 
   //Function to change vertival menu on clicking on it, if it has sub items.
   const changeVertMenuItems = (index) => {
 
     const selectedItem = verticalmenuBTns.menuItems[index];
     if (selectedItem.itsSubData?.length > 0) {
-      console.log("Menu change", allSideMenuVertBTNs[index].itsSubData.length)
+      // console.log("Menu change", allSideMenuVertBTNs[index].itsSubData.length)
       
       setSubmenu({ activeIndex: -2, menuItems: selectedItem.itsSubData })
     }
@@ -28,7 +28,7 @@ function SideMenuVert() {
 
 
   const changeVertSubMenu = (index) => {
-    console.log("Index", index);
+    // console.log("Index", index);
     // if (index === -1) return;
     setSubmenu(preState => ({ ...preState, activeIndex: index }))
     
@@ -48,7 +48,7 @@ function SideMenuVert() {
 
   return (
     <>
-      <div className='flex '>
+      <div className='flex  '>
         <div className={`  w-full  flex-shrink-0  flex flex-col   items-center  text-[#9F9F9F] bg-white rounded-l-2xl  py-1 transition-transform duration-500 ${subMenu.activeIndex !== -1 ? "-translate-x-full" : "translate-x-0"}`}>
           {
             verticalmenuBTns.menuItems.map((eachBTn, index) => <button onClick={() => { changeVertMenuItems(index) }} key={index} className={`flex  flex-col justify-center items-center p-4 rounded-2xl my-1 hover:text-white hover:bg-[#081225] transition-colors w-[88%]   relative ${index === verticalmenuBTns.activeIndex ? "bg-[#081225] text-white" : ""}  ${eachBTn.canGoBack ? "cursor-default" : ""}`}>

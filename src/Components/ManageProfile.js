@@ -11,24 +11,24 @@ function ManageProfile() {
                     <h2 className='ml-3 '>Account Setting</h2>
                 </div>
 
-                <div className=" lg:w-[350px] w-full lg:block flex text-center lg:text-left text-[#9F9F9F] border-2  bg-white border-borderColor p-2 rounded-2xl my-10">
+                <div className=" lg:w-[350px] max-h-[390px] w-full lg:block flex text-center lg:text-left text-[#9F9F9F] border-2  bg-white border-borderColor p-2 rounded-2xl my-10">
                     <div className=' py-3 px-2 cursor-pointer border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
                         <Person />
                         <span className='ml-2'>Profile Setting</span>
                     </div>
-                    <div className=' py-3 px-2 cursor-pointer border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
+                    <div className=' py-3 px-2 cursor-pointer xl:border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
                         <Person />
                         <span className='ml-2'>Password</span>
                     </div>
-                    <div className='py-3 px-2 cursor-pointer border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
+                    <div className='py-3 px-2 cursor-pointer xl:border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
                         <Person />
                         <span className='ml-2'>Manage Plans</span>
                     </div>
-                    <div className=' py-3 px-2 cursor-pointer border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
+                    <div className=' py-3 px-2 cursor-pointer xl:border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
                         <Person />
                         <span className='ml-2'>Payment Details</span>
                     </div>
-                    <div className=' py-3 px-2 cursor-pointer border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
+                    <div className=' py-3 px-2 cursor-pointer xl:border-b-2 mb-1 hover:text-black hover:bg-borderColor transition-colors'>
                         <Person />
                         <span className='ml-2'>Deactivate Account</span>
                     </div>

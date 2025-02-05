@@ -36,7 +36,7 @@ function NewSite() {
                     </div>
 
                     <div className="mt-[60px] ">
-                        <button className='bg-textLightColor px-3 py-1 rounded-lg text-white mx-4 hover:bg-borderColor transition-colors'>Cancel</button>
+                        <button type="button" className='bg-textLightColor px-3 py-1 rounded-lg text-white mx-4 hover:bg-borderColor transition-colors'>Cancel</button>
                         <button className='bg-textLightColor px-3 py-1 rounded-lg text-white mx-4 hover:bg-borderColor transition-colors'>Add Site</button>
                     </div>
                 </form>
