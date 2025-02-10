@@ -28,7 +28,7 @@ function TopRightSettings() {
     }
     return (
         <>
-            <div className='flex items-center gap-4 z-[100]' >
+            <div className='flex items-center gap-1 lg:gap-4 z-[100]' >
 
                 <div className='hover:bg-[#8766FF] rounded-full p-[6px] cursor-pointer'>
                     <GroupAdd className='  text-white' style={{ width: "30px", height: "30px" }} />

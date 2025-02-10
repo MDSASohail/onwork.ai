@@ -30,6 +30,7 @@ import HeatMap from './Components/HeatMap';
 import SessionRecordingInDetail from './Components/SessionRecordingDetail';
 import OrganizationSetting from './Components/OrganizationSetting';
 import LineChart from './Components/LineChard';
+import HeatmapColor from './Components/HeatMapColor';
 const filterValues = [{ criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }, { criteria: "Country", operation: ":", value: "India, UAE" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Range", operation: ">=", value: "50" }, { criteria: "Retention", operation: "<", value: "100" }, { criteria: "Reffer", value: "Google", operation: "!=" }, { criteria: "URL", value: "allfriends.com", operation: ":" }, { criteria: "Scroll", value: "50", operation: ">" }]
 const dataForBarChart = [
   { name: "google.com", views: 100 },
@@ -39,7 +40,7 @@ const dataForBarChart = [
   { name: "instagram.com", views: 60 },
 ];
 function App() {
-
+  
   //Initializing MaterializeCSS
   //  useEffect(()=>{
   //          M.AutoInit()
@@ -105,6 +106,7 @@ function App() {
       {/* <SessionRecordingInDetail/> */}
       {/* <OrganizationSetting/> */}
       {/* <LineChart/> */}
+      {/* <HeatmapColor/> */}
     </div>
   );
 }

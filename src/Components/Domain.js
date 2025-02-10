@@ -4,7 +4,7 @@ function Domain() {
   return (
 
     <div className="relative">
-      <select  className="w-full py-2 px-6 rounded-xl cursor-pointer font-medium appearance-none bg-white  border-gray-300 focus:outline-none focus:border-blue-500"
+      <select  className="w-full py-1 px-6 rounded-lg cursor-pointer font-medium appearance-none bg-white  border-gray-300 focus:outline-none focus:border-blue-500"
       >
         <option value="">Domain</option>
         <option value="">Manage Domain</option>

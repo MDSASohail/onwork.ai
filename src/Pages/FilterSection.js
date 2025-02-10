@@ -1,7 +1,7 @@
 import EachFilter from "../Components/EachFilter";
 
 const FiltersSection = ({ filters = [], onClearFilters }) => (
-    <div className=" py-2 px-2 flex flex-wrap justify-evenly bg-white rounded-2xl">
+    <div className=" py-2 px-2 flex flex-wrap justify-evenly bg-white rounded-2xl relative">
       {filters.map((filter, index) => (
         <EachFilter
           key={index}
