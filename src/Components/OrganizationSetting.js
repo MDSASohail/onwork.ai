@@ -129,8 +129,8 @@ function OrganizationSetting() {
                                 <button onClick={() => setOrgOrSite("site")} className={` px-3 py-2 rounded-lg text-white hover:bg-borderColor transition-colors ${OrgOrSite ==="site" ?"bg-borderColor":"bg-textLightColor"}`}>New Site</button>
                                 <button onClick={() => setOrgOrSite("org")} className={` px-3 py-2 rounded-lg ml-6 text-white  hover:bg-borderColor transition-colors ${OrgOrSite ==="org" ?"bg-borderColor":"bg-textLightColor"}`}> New Organization</button>
                             </div>
-                            <div className={`transition-opacity  ${OrgOrSite === "org" ? "opacity-100 z-50" : "opacity-0 z-10 pointer-events-none"}`}><NewOrganization /></div>
-                            <div className={`transition-opacity absolute w-full top-12 ${OrgOrSite === 'site' ? "opacity-100 z-50" : "opacity-0 z-10 pointer-events-none"}`}><NewSite /></div>
+                            <div className={`transition-opacity  ${OrgOrSite === "org" ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"}`}><NewOrganization /></div>
+                            <div className={`transition-opacity absolute w-full top-12 ${OrgOrSite === 'site' ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"}`}><NewSite /></div>
 
 
 

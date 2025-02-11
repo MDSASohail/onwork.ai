@@ -286,7 +286,7 @@ function SessionRecording() {
 
         </div>
 
-        <div className='flex items-center gap-3 justify-end'>
+        <div className='flex items-center gap-3 justify-end z-30'>
           <div className='border-2 rounded-xl py-1 mx-2'><button><DateRange /></button></div>
           <div className='border-2 rounded-xl py-2 mx-2 px-3'><button><FilterList /></button></div>
           <div className='border-2 rounded-xl py-2 ml-2 px-3'><button>All Users <ArrowDropDown /></button></div>

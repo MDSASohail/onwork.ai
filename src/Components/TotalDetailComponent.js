@@ -11,7 +11,7 @@ function TotalDetailComponent() {
 
     return (
 
-        <div className='flex xl:justify-between md:justify-center  gap-3  ' >
+        <div className='flex xl:justify-between md:justify-center  gap-3  z-30' >
             {data.map((eachData, index) => <EachDetailSection key={index} indexOfParent={index} number={eachData.number} increment={eachData.increment} text={eachData.text} options={eachData.options} />)}
         </div>
     )
@@ -34,7 +34,7 @@ function EachDetailSection({ indexOfParent, number, increment, text, options }) 
     };
     return (
         <>
-            <div className='max-w-[400px]  flex-grow w-full p-1 h-24 xl:h-28 xl:p-3 px-2 flex justify-between bg-white rounded-xl' >
+            <div className='max-w-[400px] z-30 flex-grow w-full p-1 h-24 xl:h-28 xl:p-3 px-2 flex justify-between bg-white rounded-xl' >
                 <div className='flex flex-col'>
                     <h1 className='font-medium text-xl xl:text-2xl'>{number}</h1>
                     <span className='text-[#33AF2B] text-[13px] xl:text-xl '>{increment}</span>
@@ -53,7 +53,7 @@ function EachDetailSection({ indexOfParent, number, increment, text, options }) 
                             <button className={` hover:bg-hoverBGColor hover:text-white rounded-full ${isOptionsVisible ? "bg-[#8766FF] text-white" : ""}`}>
                                 <MoreVert style={{fontSize:20}} />
                             </button>
-                            <div className={`border-2   z-40 border-borderColor px-1 py-3 rounded-2xl w-60 absolute bg-white transition-opacity duration-300 ease-in-out ${indexOfParent === data.length - 1 ? "right-0" : ""} ${isOptionsVisible ? "visible opacity-100" : "invisible opacity-0"}`}>
+                            <div className={`border-2   z-[100] border-borderColor px-1 py-3 rounded-2xl w-60 absolute bg-white transition-opacity duration-300 ease-in-out ${indexOfParent === data.length - 1 ? "right-0" : ""} ${isOptionsVisible ? "visible opacity-100" : "invisible opacity-0"}`}>
                                 {
                                     options.map((eachOption, index) => <p key={index} className='border-b-2 cursor-pointer hover:bg-hoverBGColor px-2 py-3'>{eachOption}</p>)
                                 }

@@ -273,8 +273,8 @@ function HeatMap() {
 
                     </div>
 
-                    <div className='gap-3 flex items-center justify-end my-2'>
-                        <div className='border-2 rounded-xl py-1 '><button><DateRange /></button></div>
+                    <div className='gap-3 flex items-center justify-end my-2 z-30'>
+                        <div className='border-2 rounded-xl'><button><DateRange /></button></div>
                         <div className='border-2 rounded-xl py-2  px-3'><button><FilterList /></button></div>
                         <div className='border-2 rounded-xl py-2  px-3'><button>All Users</button></div>
 
@@ -286,7 +286,7 @@ function HeatMap() {
                     <div className="styleScrollbar h-[96%] overflow-y-scroll    ">
                         <table className="table-auto w-full min-w-[800px] ">
                             <thead className=''>
-                                <tr className="h-[40px]  sticky bg-white top-0 z-10">
+                                <tr className="h-[40px]  sticky bg-white top-0 z-[1]">
 
                                     <th>S.No</th>
                                     <th >Title</th>
